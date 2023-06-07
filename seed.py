@@ -14,6 +14,12 @@ if __name__ == "__main__":
     fake = Faker()
 
     products = []
-    
+    for i in range(30):
+        product = Product(
+            name = fake.unique_name()
+        )
+        session.add(product)
+        products.append(product)
+
 
 

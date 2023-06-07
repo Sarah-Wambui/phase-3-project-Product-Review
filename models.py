@@ -9,8 +9,8 @@ engine = create_engine("sqlite:///product.db")
 product_user = Table(
     "product_users",
     Base.metadata,
-    Column("product_id", ForeignKey("products.id", primary_key= True)),
-    Column("user_id", ForeignKey("users.id", primary_key = True)),
+    Column("product_id", ForeignKey("products.id"), primary_key = True),
+    Column("user_id", ForeignKey("users.id"),primary_key = True),
     extend_existing = True,
 )
 
@@ -19,6 +19,7 @@ class Product(Base):
 
     id = Column(Integer(), primary_key = True)
     name = Column(String())
+    price = Column(Integer())
     reviews = relationship("Review", backref= backref("product"))
     users = relationship("User", secondary = product_user, back_populates = "products")
 
